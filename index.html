@@ -3,28 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body style="display:none;">
 <script>
-const linktreeUrl = 'https://linktr.ee/theanandworld';
-const canaryUrl = 'http://canarytokens.com/terms/ctop7206lv1utztnk4pkvwv92/images.jpg';
+const linktreeUrl = 'https://linktr.ee/theanandworld'; // your real linktree URL
+const canaryUrl = 'https://canarytokens.com/terms/ctop7206lv1utztnk4pkvwv92/images.jpg'; // your canarytoken image
 
-// fire canary in sandboxed iframe to avoid HTTPS blocking redirect
-const iframe = document.createElement('iframe');
-iframe.src = canaryUrl + '?cb=' + Date.now();
-iframe.style.width = '1px';
-iframe.style.height = '1px';
-iframe.style.border = '0';
-iframe.style.display = 'none';
-document.body.appendChild(iframe);
+// create hidden image to trigger the canary
+const img = document.createElement('img');
+img.src = canaryUrl + '?cachebust=' + Date.now(); // prevent caching
+img.style.display = 'none';
+document.body.appendChild(img);
 
-// redirect after delay
+// wait 1 second, then redirect
 setTimeout(() => {
   window.location.href = linktreeUrl;
-}, 800);
+}, 1000);
 </script>
+
 <noscript>
 <meta http-equiv="refresh" content="0; url=https://linktr.ee/theanandworld">
 </noscript>
-</body>
+</head>
+<body style="display:none;"></body>
 </html>
