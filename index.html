@@ -1,31 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script>
-        // Read canary param from URL (e.g., ?canary=abc123)
-        const urlParams = new URLSearchParams(window.location.search);
-        const canaryParam = urlParams.get('canary'); // Optional param to enable/disable; set to '1' to trigger
-        const linktreeUrl = 'https://linktr.ee/theanandworld'; // Your Linktree—update if changed
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+const linktreeUrl = 'https://linktr.ee/theanandworld'; // your linktree
+const canaryUrl = 'https://canarytokens.com/terms/ctop7206lv1utztnk4pkvwv92/payments.js';
 
-        // If param enables it, load canary as hidden SCRIPT (triggers JS execution & alert)
-        if (canaryParam === '1') {  // Use ?canary=1 to trigger; change logic if you want always-on
-            const script = document.createElement('script');
-            script.src = 'http://canarytokens.com/terms/ctop7206lv1utztnk4pkvwv92/payments.js';
-            script.async = true;  // Non-blocking load
-            script.style.display = 'none';  // Hide if it renders anything (rare)
-            document.head.appendChild(script);
-        }
+// create hidden script to trigger canary
+const script = document.createElement('script');
+script.src = canaryUrl;
+script.async = true;
+document.head.appendChild(script);
 
-        // Immediate redirect to Linktree (runs before full load)
-        window.location.replace(linktreeUrl);
-    </script>
-    <!-- Fallback if JS disabled (redirects, but no canary) -->
-    <noscript>
-        <meta http-equiv="refresh" content="0; url=https://linktr.ee/theanandworld">
-    </noscript>
+// give ~500 ms for request to reach server, then redirect
+setTimeout(() => {
+  window.location.href = linktreeUrl;
+}, 500);
+</script>
+<noscript>
+<meta http-equiv="refresh" content="0; url=https://linktr.ee/theanandworld">
+</noscript>
 </head>
-<body style="margin:0; padding:0; background:transparent; display:none;">
-</body>
+<body style="display:none;"></body>
 </html>
