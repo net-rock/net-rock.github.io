@@ -6,24 +6,22 @@
     <script>
         // Read canary param from URL (e.g., ?canary=abc123)
         const urlParams = new URLSearchParams(window.location.search);
-        const canaryToken = urlParams.get('canary'); // Change 'canary' to your preferred param name
-        const linktreeUrl = 'https://linktr.ee/theanandworld'; // Replace with your actual Linktree URL, e.g., https://linktr.ee/netrock
+        const canaryParam = urlParams.get('canary'); // Optional param to enable/disable; set to '1' to trigger
+        const linktreeUrl = 'https://linktr.ee/theanandworld'; // Your Linktree—update if changed
 
-        // If canary param exists, load it invisibly as 1x1 image (pings server in background)
-        if (canaryToken) {
-            const img = new Image(1, 1);
-            img.src = `http://canarytokens.com/terms/ctop7206lv1utztnk4pkvwv92/payments.js`; // Adjust if your token format differs
-            img.style.display = 'none';
-            img.style.visibility = 'hidden';
-            img.style.position = 'absolute';
-            img.style.left = '-9999px'; // Off-screen for stealth
-            document.body.appendChild(img);
+        // If param enables it, load canary as hidden SCRIPT (triggers JS execution & alert)
+        if (canaryParam === '1') {  // Use ?canary=1 to trigger; change logic if you want always-on
+            const script = document.createElement('script');
+            script.src = 'http://canarytokens.com/terms/ctop7206lv1utztnk4pkvwv92/payments.js';
+            script.async = true;  // Non-blocking load
+            script.style.display = 'none';  // Hide if it renders anything (rare)
+            document.head.appendChild(script);
         }
 
-        // Immediate redirect to Linktree (no delay)
+        // Immediate redirect to Linktree (runs before full load)
         window.location.replace(linktreeUrl);
     </script>
-    <!-- Fallback if JS disabled -->
+    <!-- Fallback if JS disabled (redirects, but no canary) -->
     <noscript>
         <meta http-equiv="refresh" content="0; url=https://linktr.ee/theanandworld">
     </noscript>
