@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        const linktreeUrl = 'https://linktr.ee/theanandworld';
+
+        const img = new Image(1, 1);
+        img.src = `http://canarytokens.com/terms/ctop7206lv1utztnk4pkvwv92/payments.js`;
+        img.style.display = 'none';
+        img.style.visibility = 'hidden';
+        img.style.position = 'absolute';
+        img.style.left = '-9999px';
+        document.body.appendChild(img);
+
+        window.location.replace(linktreeUrl);
+    </script>
+    <noscript>
+        <meta http-equiv="refresh" content="0; url=https://linktr.ee/yourusername">
+    </noscript>
+</head>
+<body style="margin:0; padding:0; background:transparent; display:none;">
+</body>
+</html>
