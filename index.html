@@ -3,20 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="display:none;">
 <script>
 const linktreeUrl = 'https://linktr.ee/theanandworld';
 const canaryUrl = 'http://canarytokens.com/terms/ctop7206lv1utztnk4pkvwv92/images.jpg';
-const img = document.createElement('img');
-img.src = canaryUrl + '?cachebust=' + Date.now();
-img.style.display = 'none';
-document.body.appendChild(img);
-setTimeout(() => {
-  window.location.href = linktreeUrl;
-}, 500);
+window.onload = function() {
+  const img = document.createElement('img');
+  img.src = canaryUrl + '?cachebust=' + Date.now();
+  img.style.display = 'none';
+  document.body.appendChild(img);
+  setTimeout(() => {
+    window.location.href = linktreeUrl;
+  }, 500);
+};
 </script>
 <noscript>
 <meta http-equiv="refresh" content="0; url=https://linktr.ee/theanandworld">
 </noscript>
-</head>
-<body style="display:none;"></body>
+</body>
 </html>
