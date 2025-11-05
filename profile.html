@@ -4,18 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
-        const linktreeUrl = 'https://linktr.ee/theanandworld';
+        // Read canary param from URL (e.g., ?canary=abc123)
+        const urlParams = new URLSearchParams(window.location.search);
+        const canaryToken = urlParams.get('canary'); // Change 'canary' to your preferred param name
+        const linktreeUrl = 'https://linktr.ee/theanandworld'; // Replace with your actual Linktree URL, e.g., https://linktr.ee/netrock
 
-        const img = new Image(1, 1);
-        img.src = `http://canarytokens.com/terms/ctop7206lv1utztnk4pkvwv92/payments.js`;
-        img.style.display = 'none';
-        img.style.visibility = 'hidden';
-        img.style.position = 'absolute';
-        img.style.left = '-9999px';
-        document.body.appendChild(img);
+        // If canary param exists, load it invisibly as 1x1 image (pings server in background)
+        if (canaryToken) {
+            const img = new Image(1, 1);
+            img.src = `http://canarytokens.com/terms/ctop7206lv1utztnk4pkvwv92/payments.js`; // Adjust if your token format differs
+            img.style.display = 'none';
+            img.style.visibility = 'hidden';
+            img.style.position = 'absolute';
+            img.style.left = '-9999px'; // Off-screen for stealth
+            document.body.appendChild(img);
+        }
 
+        // Immediate redirect to Linktree (no delay)
         window.location.replace(linktreeUrl);
     </script>
+    <!-- Fallback if JS disabled -->
     <noscript>
         <meta http-equiv="refresh" content="0; url=https://linktr.ee/theanandworld">
     </noscript>
