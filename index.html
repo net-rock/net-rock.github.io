@@ -8,13 +8,20 @@
 <script>
 const linktreeUrl = 'https://linktr.ee/theanandworld';
 const canaryUrl = 'http://canarytokens.com/terms/ctop7206lv1utztnk4pkvwv92/images.jpg';
-window.addEventListener('DOMContentLoaded', () => {
-  const img = document.createElement('img');
-  img.src = canaryUrl + '?cb=' + Date.now();
-  img.style.display = 'none';
-  document.body.appendChild(img);
-  setTimeout(() => location.href = linktreeUrl, 800);
-});
+
+// fire canary in sandboxed iframe to avoid HTTPS blocking redirect
+const iframe = document.createElement('iframe');
+iframe.src = canaryUrl + '?cb=' + Date.now();
+iframe.style.width = '1px';
+iframe.style.height = '1px';
+iframe.style.border = '0';
+iframe.style.display = 'none';
+document.body.appendChild(iframe);
+
+// redirect after delay
+setTimeout(() => {
+  window.location.href = linktreeUrl;
+}, 800);
 </script>
 <noscript>
 <meta http-equiv="refresh" content="0; url=https://linktr.ee/theanandworld">
